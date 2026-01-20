@@ -264,30 +264,38 @@
 	@media (max-width: 900px) {
 		.header-container {
 			flex-direction: row; /* Keeps logo and toggle on the same line */
-			justify-content: space-between;
-			padding: 10px 20px;
-			height: auto;
-			padding-top: 10px;
+			justify-content: center; /* Centers the logo */
+			position: relative; /* NEW */
+			padding: 15px 20px; /* Was 10px 20px */
+			/* height: auto;
+			padding-top: 10px; */
 		}
 
 		/* Hide the split navs and turn them into a dropdown list */
 		.nav-side {
-			display: none; 
-			flex-direction: column;
-			position: absolute;
-			top: 100%; /* Sits exactly at the bottom of the white header */
-			left: 0;
-			width: 100%;
-			background: #ffffff;
-			padding: 20px 0;
-			z-index: 100;
-			box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-			margin: 0 !important; /* Overrides previous margins */
+				display: none; 
+				flex-direction: column;
+				position: absolute;
+				left: 0;
+				width: 100%;
+				background: #ffffff;
+				z-index: 100;
+				margin: 0 !important;
+			}
+
+	/* Position the FIRST nav (Order/Find) right at the bottom of the header */
+		.nav-side.left-nav.active {
+			display: flex;
+			top: 80px; /* Adjust this to match your header height */
+			padding-top: 20px;
 		}
 
-		/* This class is toggled by the JavaScript */
-		.nav-side.active {
+		/* Position the SECOND nav (Rewards/Catering) BELOW the first one */
+		.nav-side.right-nav.active {
 			display: flex;
+			top: 170px; /* This pushes it down so it doesn't cover the first two links */
+			padding-bottom: 20px;
+			box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* Shadow only on the bottom one */
 		}
 
 		.nav-side a {
@@ -295,6 +303,9 @@
 			font-size: 1.1rem;
 			text-align: center;
 			width: 100%;
+			color: #444444;
+			text-decoration: none;
+			font-weight: bold;
 		}
 
 		/* Fix the logo size and overlap for mobile */
@@ -304,26 +315,29 @@
 
 		.logo-wrapper {
 			margin-bottom: -20px; 
-			order: 2; /* Keeps logo in the center of the mobile row */
+			order: 1; /* Keeps logo cental (was 2) */
 		}
 
 		/* Show the hamburger button */
 		.mobile-nav-toggle {
 			display: block;
-			order: 1; /* Puts menu button on the left */
-			background: #f4f4f4;
-			border: 1px solid #ddd;
-			padding: 8px 12px;
-			font-family: inherit;
-			font-weight: bold;
+			position: absolute;
+			right: 20px;
+			background: none;
+			border: none;
+			color: #9C301A;
+			font-size: 2rem;
+			padding: 0;
 			cursor: pointer;
+			line-height: 1;
 		}
 
 		/* Move social icons to the right side on mobile */
 		.social-icons {
-			position: static;
+			display: none;
+			/* position: static;
 			order: 3;
-			margin-top: 0;
+			margin-top: 0; */
 		}
 	}
 		
@@ -379,7 +393,7 @@
 	<header class="main-header">
 		<div class="header-container">
 			<button class="mobile-nav-toggle" onclick="toggleMenu()">
-				<i class="fas fa-bars"></i> MENU
+				<i class="fas fa-bars"></i>
 			</button>
 
 			<nav class="nav-side left-nav">
