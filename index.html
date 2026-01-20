@@ -234,85 +234,88 @@
 		}
 
 	/* --- Unified Mobile Styles --- */
-	@media (max-width: 900px) {
-		.header-container {
-			display: flex;
-			justify-content: center; 
-			align-items: center;
-			padding: 20px;
-			position: relative;
-			height: 70px; /* Forces a consistent height for the white bar */
-		}
+@media (max-width: 900px) {
+    .header-container {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        padding: 10px 20px;
+        position: relative;
+        height: 70px; 
+    }
 
-		/* Target both nav sides and force them to be one vertical list */
-		.nav-side {
-			display: none; 
-			flex-direction: column;
-			position: absolute;
-			top: 100%;      /* Starts right at the bottom of the header */
-			left: 0;
-			width: 100%;
-			background: #ffffff;
-			z-index: 99;    /* Just below the hamburger button */
-			padding: 0;
-			margin: 0 !important;
-			box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-		}
+    /* Target both nav sides */
+    .nav-side {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%;
+        background: #ffffff;
+        left: 0;
+        margin: 0 !important;
+        padding: 0;
+    }
 
-		/* When the menu is toggled open */
-		.nav-side.active {
-			display: flex;
-		}
+    /* The FIRST nav (Order / Find) - Absolute position to drop down from header */
+    .nav-side.left-nav.active {
+        display: flex;
+        position: absolute;
+        top: 100%; 
+        z-index: 100;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-		/* This is the magic fix for the "Right Nav" being out of line */
-		.nav-side.right-nav.active {
-			position: absolute; 
-			top: calc(100% + 104px); /* Pushes the second half exactly below the first half */
-			box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-			border-top: none;
-		}
+    /* The SECOND nav (Rewards / Catering) - Static position so it sticks to the bottom of the first */
+    .nav-side.right-nav.active {
+        display: flex;
+        position: absolute;
+        /* This magic number pushes it below the first two links */
+        top: calc(100% + 104px); 
+        z-index: 101;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee; /* Adds a divider between the two groups */
+    }
 
-		.nav-side a {
-			display: block;
-			padding: 15px 0;
-			text-align: center;
-			width: 100%;
-			font-size: 1.1rem;
-			font-weight: bold;
-			color: #444444;
-			text-decoration: none;
-			border-bottom: 1px solid #eee;
-			background: white;
-		}
+    .nav-side a {
+        display: block;
+        padding: 15px 0;
+        text-align: center;
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #444444;
+        text-decoration: none;
+        background: white;
+        border-bottom: 1px solid #f9f9f9;
+    }
 
-		/* The Hamburger Button */
-		.mobile-nav-toggle {
-			display: block;
-			position: absolute;
-			right: 20px;
-			top: 50%;
-			transform: translateY(-50%); /* Perfectly centers the bars vertically */
-			background: none !important;
-			border: none !important;
-			color: #9c301a;
-			font-size: 2.2rem;
-			cursor: pointer;
-			z-index: 110; /* Ensures bars are ALWAYS on top of the menu */
-		}
+    /* Hamburger Bars */
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none !important;
+        border: none !important;
+        color: #9c301a;
+        font-size: 2.2rem;
+        cursor: pointer;
+        z-index: 110; /* Always on top */
+    }
 
-		.logo-wrapper {
-			margin-bottom: -25px; 
-			z-index: 10;
-		}
+    .logo-wrapper {
+        margin-bottom: -20px; 
+        z-index: 10;
+    }
 
-		.top-logo {
-			width: 180px;
-		}
+    .top-logo {
+        width: 180px;
+    }
 
-		.social-icons {
-			display: none;
-		}
-	}
+    .social-icons {
+        display: none;
+    }
+}
 		
 		.color-bar {
 			background-color: #9c301a;
