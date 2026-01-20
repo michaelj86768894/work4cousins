@@ -260,21 +260,72 @@
 			color: #9c301a;
 		}
 
-		/* Mobile: Stack them so they don't crush the logo */
-		@media (max-width: 900px) {
-			.header-container {
-				flex-direction: column;
-			}
-			.nav-side {
-				margin: 10px 0 !important;
-				justify-content: center !important;
-				gap: 20px;
-			}
-			.social-icons {
-				position: static;
-				margin-top: 10px;
-			}
+	/* --- Unified Mobile Styles --- */
+	@media (max-width: 900px) {
+		.header-container {
+			flex-direction: row; /* Keeps logo and toggle on the same line */
+			justify-content: space-between;
+			padding: 10px 20px;
+			height: auto;
+			padding-top: 10px;
 		}
+
+		/* Hide the split navs and turn them into a dropdown list */
+		.nav-side {
+			display: none; 
+			flex-direction: column;
+			position: absolute;
+			top: 100%; /* Sits exactly at the bottom of the white header */
+			left: 0;
+			width: 100%;
+			background: #ffffff;
+			padding: 20px 0;
+			z-index: 100;
+			box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+			margin: 0 !important; /* Overrides previous margins */
+		}
+
+		/* This class is toggled by the JavaScript */
+		.nav-side.active {
+			display: flex;
+		}
+
+		.nav-side a {
+			margin: 10px 0;
+			font-size: 1.1rem;
+			text-align: center;
+			width: 100%;
+		}
+
+		/* Fix the logo size and overlap for mobile */
+		.top-logo {
+			width: 180px; 
+		}
+
+		.logo-wrapper {
+			margin-bottom: -20px; 
+			order: 2; /* Keeps logo in the center of the mobile row */
+		}
+
+		/* Show the hamburger button */
+		.mobile-nav-toggle {
+			display: block;
+			order: 1; /* Puts menu button on the left */
+			background: #f4f4f4;
+			border: 1px solid #ddd;
+			padding: 8px 12px;
+			font-family: inherit;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		/* Move social icons to the right side on mobile */
+		.social-icons {
+			position: static;
+			order: 3;
+			margin-top: 0;
+		}
+	}
 		
 		.color-bar {
 			background-color: #9c301a;
@@ -327,19 +378,22 @@
 
 	<header class="main-header">
 		<div class="header-container">
+			<button class="mobile-nav-toggle" onclick="toggleMenu()">
+				<i class="fas fa-bars"></i> MENU
+			</button>
 
-			<nav class="nav-side">
-				<a href="https://cousinssubs.com/Order">Order Now</a>
-				<a href="https://cousinssubs.com/Order">Find a Store</a>
+			<nav class="nav-side left-nav">
+				<a href="https://www.cousinssubs.com/order">Order Now</a>
+				<a href="https://www.cousinssubs.com/locations">Find a Store</a>
 			</nav>
 
 			<div class="logo-wrapper">
 				<img src="images/cousinsLogo.png" alt="Cousins Logo" class="top-logo">
 			</div>
 
-			<nav class="nav-side">
-				<a href="https://cousinssubs.com/Rewards">Rewards</a>
-				<a href="https://cousinssubs.com/Catering">Catering</a>
+			<nav class="nav-side right-nav">
+				<a href="https://www.cousinssubs.com/about/awards">Rewards</a>
+				<a href="https://www.cousinssubs.com/catering">Catering</a>
 			</nav>
 
 			<div class="social-icons">
@@ -525,7 +579,8 @@
     </section>
 
 	<script>
-function filterLocations() {
+
+		function filterLocations() {
     // Get the search input value and convert to lowercase
     let input = document.getElementById('locationSearch').value.toLowerCase();
     // Get all the location buttons
@@ -547,6 +602,13 @@ function filterLocations() {
     // Show a "No results" message if everything is hidden
     noResults.style.display = visibleCount === 0 ? "block" : "none";
 }
+		
+
+		function toggleMenu() {
+    const navs = document.querySelectorAll('.nav-side');
+    navs.forEach(nav => nav.classList.toggle('active'));
+}
+
 </script>
 	
 	
