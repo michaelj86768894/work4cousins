@@ -234,83 +234,85 @@
 		}
 
 	/* --- Unified Mobile Styles --- */
-		@media (max-width: 900px) {
-			.header-container {
-				display: flex;
-				justify-content: center; /* Keeps logo centered */
-				align-items: center;
-				padding: 10px 20px;
-				position: relative;
-			}
-
-			/* Target both nav sides together */
-			.nav-side {
-				display: none; 
-				flex-direction: column;
-				position: absolute;
-				top: 100%; /* Sits right at the bottom of the white bar */
-				left: 0;
-				width: 100%;
-				background: #ffffff;
-				z-index: 100;
-				padding: 10px 0;
-				box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-			}
-
-			/* When active, they show up! */
-			.nav-side.active {
-				display: flex;
-			}
-
-			/* This prevents the second nav from overlapping the first */
-			.nav-side.right-nav.active {
-				position: static; /* This makes it stack NATURALLY under the first nav */
-				box-shadow: none;
-				padding-top: 0;
-			}
-
-			.nav-side a {
-				display: block;
-				padding: 12px 0;
-				text-align: center;
-				width: 100%;
-				font-size: 1.1rem;
-				font-weight: bold;
-				color: #444444;
-				border-bottom: 1px solid #f0f0f0; /* Adds a nice divider between links */
-			}
-
-			/* Remove the border from the very last link */
-			.nav-side.right-nav a:last-child {
-				border-bottom: none;
-			}
-
-			/* The Hamburger Bars */
-			.mobile-nav-toggle {
-				display: block; /* Only shows on mobile */
-				position: absolute;
-				right: 20px;
-				background: none !important; /* Forces no background */
-				border: none !important;     /* Forces no border */
-				color: #9c301a;              /* Cousins Red */
-				font-size: 2.2rem;
-				cursor: pointer;
-				padding: 0;
-				z-index: 110;
-			}
-
-			.logo-wrapper {
-				margin-bottom: -20px;
-			}
-
-			.top-logo {
-				width: 200px;
-			}
-
-			.social-icons {
-				display: none;
-			}
+	@media (max-width: 900px) {
+		.header-container {
+			display: flex;
+			justify-content: center; 
+			align-items: center;
+			padding: 20px;
+			position: relative;
+			height: 70px; /* Forces a consistent height for the white bar */
 		}
+
+		/* Target both nav sides and force them to be one vertical list */
+		.nav-side {
+			display: none; 
+			flex-direction: column;
+			position: absolute;
+			top: 100%;      /* Starts right at the bottom of the header */
+			left: 0;
+			width: 100%;
+			background: #ffffff;
+			z-index: 99;    /* Just below the hamburger button */
+			padding: 0;
+			margin: 0 !important;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+		}
+
+		/* When the menu is toggled open */
+		.nav-side.active {
+			display: flex;
+		}
+
+		/* This is the magic fix for the "Right Nav" being out of line */
+		.nav-side.right-nav.active {
+			position: absolute; 
+			top: calc(100% + 104px); /* Pushes the second half exactly below the first half */
+			box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+			border-top: none;
+		}
+
+		.nav-side a {
+			display: block;
+			padding: 15px 0;
+			text-align: center;
+			width: 100%;
+			font-size: 1.1rem;
+			font-weight: bold;
+			color: #444444;
+			text-decoration: none;
+			border-bottom: 1px solid #eee;
+			background: white;
+		}
+
+		/* The Hamburger Button */
+		.mobile-nav-toggle {
+			display: block;
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			transform: translateY(-50%); /* Perfectly centers the bars vertically */
+			background: none !important;
+			border: none !important;
+			color: #9c301a;
+			font-size: 2.2rem;
+			cursor: pointer;
+			z-index: 110; /* Ensures bars are ALWAYS on top of the menu */
+		}
+
+		.logo-wrapper {
+			margin-bottom: -25px; 
+			z-index: 10;
+		}
+
+		.top-logo {
+			width: 180px;
+		}
+
+		.social-icons {
+			display: none;
+		}
+	}
 		
 		.color-bar {
 			background-color: #9c301a;
