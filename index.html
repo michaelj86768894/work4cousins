@@ -5,399 +5,303 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cousins Subs - Open Positions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	
-    <style>
-        /* --- General Styles --- */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: #333;
-			background-color: #f9f9f9
-        }
-
-        /* --- Hero Section with Text Overlay --- */
-        .hero-container {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Adjust height as needed */
-            overflow: visible; /* Was hidden */
-            background-color: #222; /* Fallback color */
-        }
-
-		.hero-container img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			object-position: 50% 25%; /* This pushes the image down to show the top part (the heads) */
-			display: block;
-			filter: brightness(80%);
-		}
-		
-        .hero-text {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-            width: 90%;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .apply-btn {
-            background-color: #9C301A; /* Cousins Red */
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .apply-btn:hover {
-            background-color: #7a1818;
-        }
-
-        /* --- Growth Plan Section --- */
-        .growth-plan {
-		   max-width: 1100px;
- 		   margin: 10px auto; /* Changed from 50px to 10px */
-    	   padding: 0 20px;
-		}
-
-        .growth-plan h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        /* --- Mobile Responsiveness --- */
-        @media (max-width: 768px) {
-            .role-card, .role-card:nth-child(even) {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-        }
-		
-		.location-links {
-			text-align: center;
-			margin-top: 0; /* Changed from 60px to 0 */
-			padding: 40px;
-			background-color: transparent;
-			border-radius: 8px;
-		}
-
-		.location-links h3 {
-			color: #9C301A;
-			margin-bottom: 10px;
-		}
-
-		.location-btn {
-			display: block; /* Makes them stack on top of each other */
-			max-width: 400px;
-			margin: 15px auto;
-			padding: 12px 20px;
-			background-color: white;
-			color: #9C301A;
-			text-decoration: none;
-			font-weight: bold;
-			border: 2px solid #9C301A;
-			border-radius: 4px;
-			transition: all 0.3s ease;
-		}
-
-		.location-btn:hover {
-			background-color: #9C301A;
-			color: white;
-		}
-
-		.search-container {
-			margin-bottom: 30px;
-		}
-
-		#locationSearch {
-			width: 100%;
-			max-width: 400px;
-			padding: 12px 15px;
-			font-size: 16px;
-			border: 2px solid #ddd;
-			border-radius: 25px; /* Rounded pill shape */
-			outline: none;
-			transition: border-color 0.3s;
-		}
-
-		#locationSearch:focus {
-			border-color: #9C301A; /* Changes to red when typing */
-		}
-		
-		.main-header {
-			background-color: #ffffff; /* Clean white background */
-			padding: 20px 0;           /* Gives the logo space top and bottom */
-			text-align: center;        /* Centers the inline elements */
-		}
-
-		.logo-wrapper {
-			position: relative;
-			z-index: 10;	
-			margin-bottom: -30px; 		/* Keeps the logo hanging over the bottom edge */
-		}
-
-		.top-logo {
-			height: auto;
-			width: 300px;  
-			display: block;
-			margin: 0 auto;
-		}
-
-		.header-container {
-			max-width: 1200px;
-			margin: 0 auto;
-			display: flex;
-			align-items: center;    			/* This is the key: it centers the nav-links and logo wrapper as one unit */
-			justify-content: center; 
-			padding: 0 20px;
-			position: relative;
-			padding-top: 10px; 			/* We add top padding to push the whole group (links + logo) down together */
-		}
-
-		/* This styles both the left and right nav buckets */
-		.nav-side {
-			display: flex;
-			gap: 40px;
-			flex: 1;			/* This ensures the text links sit level with the middle of the logo */
-			align-items: center; 
-		}
-
-		/* Align the left links to the right (toward the logo) */
-		.nav-side:first-child {
-			justify-content: flex-end;
-			margin-right: 50px;
-		}
-
-		/* Align the right links to the left (toward the logo) */
-		.nav-side:last-of-type {
-			justify-content: flex-start;
-			margin-left: 50px;
-		}
-
-		.nav-side a {
-			text-decoration: none;
-			color: #444444;             /* Charcoal Grey */
-			font-weight: 500;           /* Bold like the image */
-			font-size: 1.2rem;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			white-space: nowrap;        /* Keeps links on one line */
-		}
-
-		.top-logo {
-			height: auto;
-			width: 300px;               /* Adjust based on your image size */
-			display: block;
-		}
-
-		/* Social icons stay in the top right corner */
-		.social-icons {
-			position: absolute;
-			right: 20px;
-			display: flex;
-			gap: 15px;
-		}
-		
-		.social-icons a {
-			color: #333333;
-			font-size: 1.2rem;
-			transition: color 0.3s ease;
-			text-decoration: none;
-		}
-		
-		.social-icons a:hover {
-			color: #9c301a;
-		}
-		
-		/* Hide the mobile toggle by default on desktop */
-		.mobile-nav-toggle {
-			display: none;
-		}
-
-	/* --- Unified Mobile Styles --- */
-@media (max-width: 900px) {
-    .header-container {
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-        padding: 10px 20px;
-        position: relative;
-        height: 70px; 
+<style>
+    /* --- General Styles --- */
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        color: #333;
+        background-color: #f9f9f9;
     }
 
-    /* Target both nav sides */
-    .nav-side {
-        display: none; /* Hidden by default */
-        flex-direction: column;
-        width: 100%;
-        background: #ffffff;
-        left: 0;
-        margin: 0 !important;
-        padding: 0;
-    }
-
-    /* The FIRST nav (Order / Find) - Absolute position to drop down from header */
-    .nav-side.left-nav.active {
-        display: flex;
-        position: absolute;
-        top: 100%; 
-        z-index: 100;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* The SECOND nav (Rewards / Catering) - Static position so it sticks to the bottom of the first */
-    .nav-side.right-nav.active {
-        display: flex;
-        position: absolute;
-        /* This magic number pushes it below the first two links */
-        top: calc(100% + 104px); 
-        z-index: 101;
-        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-        border-top: 1px solid #eee; /* Adds a divider between the two groups */
-    }
-
-    .nav-side a {
-        display: block;
-        padding: 15px 0;
+    /* --- Header Section (Desktop) --- */
+    .main-header {
+        background-color: #ffffff;
+        padding: 20px 0 10px 0;
         text-align: center;
-        width: 100%;
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #444444;
-        text-decoration: none;
-        background: white;
-        border-bottom: 1px solid #f9f9f9;
+        position: relative;
     }
 
-    /* Hamburger Bars */
-    .mobile-nav-toggle {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none !important;
-        border: none !important;
-        color: #9c301a;
-        font-size: 2.2rem;
-        cursor: pointer;
-        z-index: 110; /* Always on top */
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
     }
 
     .logo-wrapper {
-        margin-bottom: -20px; 
+        position: relative;
         z-index: 10;
+        margin-bottom: 20px; /* Space between logo and links */
     }
 
     .top-logo {
-        width: 180px;
+        height: auto;
+        width: 280px;
+        display: block;
+        margin: 0 auto;
+        filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
     }
 
+    /* Combined Navigation (Desktop) */
+    .main-nav {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        padding: 10px 0;
+    }
+
+    .main-nav a {
+        text-decoration: none;
+        color: #444444;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+    }
+
+    .main-nav a:hover {
+        color: #9c301a;
+    }
+
+    /* Social Icons (Desktop) */
     .social-icons {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-icons a {
+        color: #333333;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-icons a:hover {
+        color: #9c301a;
+    }
+
+    /* Hide the mobile toggle by default on desktop */
+    .mobile-nav-toggle {
         display: none;
     }
-}
-		
-		.color-bar {
-			background-color: #9c301a;
-			color: white;
-			text-align: center;
-			padding: 5px 0;           /* Vertical thickness of the bar */
-			width: 100%;               /* Spans the full width */
-			text-transform: uppercase;
-			font-weight: bold;
-			letter-spacing: 1.5px;
-			box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds a little depth */
-		}
-		
-		.main-nav {
-			display: flex;
-			justify-content: center;
-			gap: 100px;               /* Space between links */
-			padding: 15px 0 5px 0;   /* Padding at the bottom to give breathing room */
-			margin-top: 10px;
-		}
 
-		.main-nav a {
-			text-decoration: none;
-			color: #444444;          /* Charcoal Grey */
-			font-weight: 600;
-			font-size: 0.9rem;
-			text-transform: uppercase; /* Automatically makes text uppercase */
-			letter-spacing: 1px;
-			transition: color 0.3s ease;
-		}
+    /* --- Hero Section --- */
+    .hero-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: visible;
+        background-color: #222;
+    }
 
-		.main-nav a:hover {
-			color: #9c301a;          /* Turns red when you hover */
-		}
+    .hero-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 25%;
+        display: block;
+        filter: brightness(80%);
+    }
 
-		/* Mobile Tweak: Stack them or scroll them if screen is too narrow */
-		@media (max-width: 768px) {
-			.main-nav {
-				gap: 15px;
-				flex-wrap: wrap;     /* Allows links to wrap to a second line on small phones */
-				padding: 10px 20px;
-			}
-			.main-nav a {
-				font-size: 0.8rem;
-			}
-		}
-    </style>
+    .hero-text {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        width: 90%;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .apply-btn {
+        background-color: #9C301A;
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        text-transform: uppercase;
+        transition: background 0.3s;
+    }
+
+    .apply-btn:hover {
+        background-color: #7a1818;
+    }
+
+    /* --- Growth Plan / Role Cards --- */
+    .growth-plan {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .growth-plan h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    /* --- Location Search Styles --- */
+    .location-links {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .location-btn {
+        display: block;
+        max-width: 400px;
+        margin: 15px auto;
+        padding: 12px 20px;
+        background-color: white;
+        color: #9C301A;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #9C301A;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    #locationSearch {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        outline: none;
+    }
+
+    #locationSearch:focus {
+        border-color: #9C301A;
+    }
+
+    .color-bar {
+        background-color: #9c301a;
+        color: white;
+        text-align: center;
+        padding: 8px 0;
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+    }
+
+    /* --- Unified Mobile Styles --- */
+    @media (max-width: 900px) {
+        .header-container {
+            padding: 15px 20px;
+            height: auto;
+            display: block; /* Stack logo and menu bars */
+        }
+
+        .logo-wrapper {
+            margin-bottom: 10px;
+        }
+
+        .top-logo {
+            width: 180px;
+        }
+
+        /* Mobile Nav Drawer */
+        .main-nav {
+            display: none; 
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            z-index: 100;
+            gap: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 0;
+        }
+
+        .main-nav.active {
+            display: flex;
+        }
+
+        .main-nav a {
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Hamburger Button (Red Bars) */
+        .mobile-nav-toggle {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 25px; /* Adjust to center vertically with logo */
+            background: none !important;
+            border: none !important;
+            color: #9c301a;
+            font-size: 2.2rem;
+            cursor: pointer;
+            z-index: 110;
+        }
+
+        .social-icons {
+            display: none; /* Hidden on mobile per your preference */
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+        }
+
+        .hero-container {
+            height: 300px;
+        }
+    }
+</style>	
+
 </head>
 <body>
 
-	<header class="main-header">
-		<div class="header-container">
-			<button class="mobile-nav-toggle" onclick="toggleMenu()">
-				<i class="fas fa-bars"></i>
-			</button>
+<header class="main-header">
+    <div class="header-container">
+        <div class="social-icons">
+			<a href="https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=https%3A%2F%2Frecruiting.paylocity.com%2Frecruiting%2Fjobs%2FAll%2Fd0c4275a-8947-45fa-826a-adeb581e5bd9%2FCousins-Submarines-Inc" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+				
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://recruiting.paylocity.com/recruiting/jobs/All/d0c4275a-8947-45fa-826a-adeb581e5bd9/Cousins-Submarines-Inc" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
 
-			<nav class="nav-side left-nav">
-				<a href="https://www.cousinssubs.com/order">Order Now</a>
-				<a href="https://www.cousinssubs.com/locations">Find a Store</a>
-			</nav>
-
-			<div class="logo-wrapper">
-				<img src="images/cousinsLogo.png" alt="Cousins Logo" class="top-logo">
+			<a href="https://x.com/intent/post?url=https%3A%2F%2Frecruiting.paylocity.com%2Frecruiting%2Fjobs%2FAll%2Fd0c4275a-8947-45fa-826a-adeb581e5bd9%2FCousins-Submarines-Inc&text=Cousins%20Submarines%20Inc%20-%20Job%20Opportunities" target="_blank" title="X"><i class="fa-brands fa-twitter"></i></a>
+				
+			<a href="mailto:?subject=Cousins%20Submarines%20Inc%20-%20Job%20Opportunities&body=Check%20out%20these%20job%20opportunities%20at%20Cousins%20Subs:%20https://recruiting.paylocity.com/recruiting/jobs/All/d0c4275a-8947-45fa-826a-adeb581e5bd9/Cousins-Submarines-Inc" title="Email Us"><i class="fas fa-envelope"></i></a>
 			</div>
 
-			<nav class="nav-side right-nav">
-				<a href="https://www.cousinssubs.com/about/awards">Rewards</a>
-				<a href="https://www.cousinssubs.com/catering">Catering</a>
-			</nav>
-
-			<div class="social-icons">
-				<a href="https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=https%3A%2F%2Frecruiting.paylocity.com%2Frecruiting%2Fjobs%2FAll%2Fd0c4275a-8947-45fa-826a-adeb581e5bd9%2FCousins-Submarines-Inc" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-				
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://recruiting.paylocity.com/recruiting/jobs/All/d0c4275a-8947-45fa-826a-adeb581e5bd9/Cousins-Submarines-Inc" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-
-				<a href="https://x.com/intent/post?url=https%3A%2F%2Frecruiting.paylocity.com%2Frecruiting%2Fjobs%2FAll%2Fd0c4275a-8947-45fa-826a-adeb581e5bd9%2FCousins-Submarines-Inc&text=Cousins%20Submarines%20Inc%20-%20Job%20Opportunities" target="_blank" title="X"><i class="fa-brands fa-twitter"></i></a>
-				
-				<a href="mailto:?subject=Cousins%20Submarines%20Inc%20-%20Job%20Opportunities&body=Check%20out%20these%20job%20opportunities%20at%20Cousins%20Subs:%20https://recruiting.paylocity.com/recruiting/jobs/All/d0c4275a-8947-45fa-826a-adeb581e5bd9/Cousins-Submarines-Inc" title="Email Us"><i class="fas fa-envelope"></i></a>
-			</div>
-
-		</div>
-	</header>
+		<div class="logo-wrapper">
+            <img src="images/cousinsLogo.png" alt="Cousins Logo" class="top-logo">
+       	</div>
+	
+		<button class="mobile-nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+		
+		<nav class="main-nav">
+			<a href="https://www.cousinssubs.com/order">Order Now</a>
+			<a href="https://www.cousinssubs.com/locations">Find a Store</a>
+			<a href="https://www.cousinssubs.com/about/awards">Rewards</a>
+			<a href="https://www.cousinssubs.com/catering">Catering</a>
+        </nav>
+	</div>
+</header>
 	
 	
 	<div class="hero-container">
@@ -547,10 +451,10 @@
 }
 		
 
-		function toggleMenu() {
-    const navs = document.querySelectorAll('.nav-side');
-    navs.forEach(nav => nav.classList.toggle('active'));
-}
+	function toggleMenu() {
+		const nav = document.querySelector('.main-nav');
+		nav.classList.toggle('active');
+	}
 
 </script>
 	
